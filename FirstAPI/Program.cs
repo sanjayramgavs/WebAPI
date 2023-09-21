@@ -1,11 +1,19 @@
+using System.Text.Json.Serialization;
+using FirstAPI.Models;
+using Microsoft.EntityFrameworkCore;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 
-builder.Services.AddControllers();
+builder.Services.AddControllers(); 
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
+builder.Services.AddDbContext<NorthwindContext>(options => options.UseSqlServer(builder.Configuration.GetConnectionString("NWindConnection")));
+builder.Services.AddScoped<RepositoryEmployee>();
+builder.Services.AddControllersWithViews().AddJsonOptions(options =>{options.JsonSerializerOptions.ReferenceHandler = ReferenceHandler.Preserve;});
+builder.Services.AddControllersWithViews().AddJsonOptions(options =>{options.JsonSerializerOptions.MaxDepth = 32;});
 
 var app = builder.Build();
 
