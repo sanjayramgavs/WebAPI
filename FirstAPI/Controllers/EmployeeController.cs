@@ -21,7 +21,7 @@ namespace FirstAPI.Controllers
 	  {
 		  return _repositoryEmployee.EmployeeDetails();
 	  } 
-	  [HttpGet("{id}")]
+	  [HttpGet("{serachid}")]
 	  public Employee GetEmployeeById(int id)
 	  {
 		  return _repositoryEmployee.EmployeeDetailsById(id);
@@ -39,7 +39,7 @@ namespace FirstAPI.Controllers
 		  return _repositoryEmployee.AddEmployee(employee);
 	  }
 	  // delete employee
-	  [HttpDelete("{id}")]
+	  [HttpDelete("{deleteid}")]
 	  public int DeleteEmployee(int id)
 	  {
 		  return _repositoryEmployee.DeleteEmployee(id);
